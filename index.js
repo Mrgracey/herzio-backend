@@ -483,12 +483,25 @@ app.post("/api/resetrequest", (req, res) => {
     });
 });
 
+app.get('/api/getTest', (req,res) =>{
+    con.connect(function () {
+        let sql = `SELECT * FROM users;`;
+        con.query(sql, (err, result) => {
+            if (err) console.log(err)
+            else {
+                res.send(result);
+            }
+        });
+    });
+});
+
+
 //Get user settings 
 app.post('/api/user/settings/get', validateUserToken, (req, res) => {
     con.connect(function () {
         //userid
         const { userid } = req.body
-        let sql = `SELECT * FROM users where Id = '${userid}'`
+        let sql = `SELECT * FROM users where d = '${userid}'`
         con.query(sql, (err, result) => {
             if (err) console.log(err)
             else {
